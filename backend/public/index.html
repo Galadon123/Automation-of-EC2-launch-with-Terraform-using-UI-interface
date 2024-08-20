@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AWS EC2 Deployment</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Deploy EC2 Instance</h1>
+
+    <form id="deployForm">
+        <label for="awsAccessKey">AWS Access Key:</label>
+        <input type="text" id="awsAccessKey" name="awsAccessKey" required>
+
+        <label for="awsSecretKey">AWS Secret Key:</label>
+        <input type="text" id="awsSecretKey" name="awsSecretKey" required>
+
+        <label for="region">AWS Region:</label>
+        <input type="text" id="region" name="region" required>
+
+        <label for="amiId">AMI ID:</label>
+        <input list="amiIds" id="amiId" name="amiId" required>
+
+        <datalist id="amiIds">
+            <option value="ami-04a81a99f5ec58529">
+            <option value="ami-0862be96e41dcbf74">
+            <option value="ami-060e277c0d4cce553">
+        </datalist>
+
+        <h4>Available AMI IDs</h4>
+        <ul>
+            <li>us-east-1 = ami-04a81a99f5ec58529</li>
+            <li>us-east-2 = ami-0862be96e41dcbf74</li>
+            <li>ap-southeast-1 = ami-060e277c0d4cce553</li>
+        </ul>
+
+        <label class="checkbox-container">
+            <input type="checkbox" id="installNginx" name="installNginx">
+            <img src="https://img.icons8.com/?size=100&id=t2x6DtCn5Zzx&format=png&color=000000" alt="NGINX">
+            Install NGINX
+        </label>
+
+        <label class="checkbox-container">
+            <input type="checkbox" id="installDocker" name="installDocker">
+            <img src="https://img.icons8.com/ios-filled/50/000000/docker.png" alt="Docker">
+            Install Docker
+        </label>
+
+        <label class="checkbox-container">
+            <input type="checkbox" id="installNode" name="installNode">
+            <img src="https://img.icons8.com/?size=100&id=hsPbhkOH4FMe&format=png&color=000000" alt="Node.js">
+            Install Node.js
+        </label>
+
+        <label class="checkbox-container">
+            <input type="checkbox" id="installVSCode" name="installVSCode">
+            <img src="https://img.icons8.com/?size=100&id=i19Ns28h30P4&format=png&color=000000" alt="VS Code">
+            Install VS-Code
+        </label>
+
+        <button type="button" onclick="deployInstance()">Deploy</button>
+    </form>
+
+    <div id="loading">
+        <img src="https://i.gifer.com/ZZ5H.gif" alt="Loading...">
+        <p>Deploying your instance, please wait...</p>
+    </div>
+
+    <h2>Deployment Status: <span id="deploymentStatus">Not started</span></h2>
+
+    <div id="vscodeUrlContainer">
+        <h2>VS Code Server URL:</h2>
+        <a id="vscodeUrl" href="#" target="_blank">N/A</a>
+    </div>
+
+    <div id="downloadKeyContainer">
+        <h2>Download Key:</h2>
+        <a id="downloadKey" href="#" download>Download Key</a>
+    </div>
+
+    <div id="sshCommandContainer">
+        <h2>SSH Command:</h2>
+        <pre id="sshCommand">N/A</pre>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
